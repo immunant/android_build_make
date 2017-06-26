@@ -543,6 +543,7 @@ endef
 # $(4): if non-empty, force the intermediates to be COMMON
 # $(5): if non-empty, force the intermediates to be for the 2nd arch
 # $(6): if non-empty, force the intermediates to be for the host cross os
+# $(7): suffix to add to target class
 define intermediates-dir-for
 $(strip \
     $(eval _idfClass := $(strip $(1))) \
@@ -560,7 +561,8 @@ $(strip \
        ,$(eval _idfIntBase := $($(_idfPrefix)_OUT_INTERMEDIATES)) \
        ) \
      ) \
-    $(_idfIntBase)/$(_idfClass)/$(_idfName)_intermediates \
+    $(eval _idfClassSuffix := $(strip $(7))) \
+    $(_idfIntBase)/$(_idfClass)$(_idfClassSuffix)/$(_idfName)_intermediates \
 )
 endef
 
@@ -570,13 +572,14 @@ endef
 # $(1): if non-empty, force the intermediates to be COMMON
 # $(2): if non-empty, force the intermediates to be for the 2nd arch
 # $(3): if non-empty, force the intermediates to be for the host cross os
+# $(4): suffix to add to target class
 define local-intermediates-dir
 $(strip \
     $(if $(strip $(LOCAL_MODULE_CLASS)),, \
         $(error $(LOCAL_PATH): LOCAL_MODULE_CLASS not defined before call to local-intermediates-dir)) \
     $(if $(strip $(LOCAL_MODULE)),, \
         $(error $(LOCAL_PATH): LOCAL_MODULE not defined before call to local-intermediates-dir)) \
-    $(call intermediates-dir-for,$(LOCAL_MODULE_CLASS),$(LOCAL_MODULE),$(call def-host-aux-target),$(1),$(2),$(3)) \
+    $(call intermediates-dir-for,$(LOCAL_MODULE_CLASS),$(LOCAL_MODULE),$(call def-host-aux-target),$(1),$(2),$(3),$(4)) \
 )
 endef
 
@@ -622,6 +625,26 @@ $(strip \
     $(if $(strip $(LOCAL_MODULE)),, \
         $(error $(LOCAL_PATH): LOCAL_MODULE not defined before call to local-generated-sources-dir)) \
     $(call generated-sources-dir-for,$(LOCAL_MODULE_CLASS),$(LOCAL_MODULE),$(call def-host-aux-target),$(1)) \
+)
+endef
+
+###########################################################
+## Get the register name for a library
+###########################################################
+
+# $(1): target name, like "NotePad"
+# $(2): { HOST, HOST_CROSS, AUX, <empty (TARGET)>, <other non-empty (HOST)> }
+# $(3): if non-empty, force 2nd arch
+# $(4): if non-empty, force host cross os
+define get-register-name
+$(strip \
+    $(eval _idfName := $(strip $(1))) \
+    $(if $(_idfName),, \
+        $(error $(LOCAL_PATH): Name not defined in call to get-register-name)) \
+    $(eval _idfPrefix := $(call find-idf-prefix,$(2),$(4))) \
+    $(eval _prefix := $(if $(strip $(4)),host_cross_)) \
+    $(eval _suffix := $(if $(strip $(3)),$($(_idfPrefix)_2ND_ARCH_MODULE_SUFFIX))) \
+    $(_prefix)$(1)$(_suffix) \
 )
 endef
 

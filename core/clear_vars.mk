@@ -473,6 +473,19 @@ LOCAL_IS_AUX_MODULE :=
 
 full_android_manifest :=
 
+LOCAL_PAGERANDO:=
+LOCAL_PAGERANDO_32:=
+LOCAL_PAGERANDO_64:=
+LOCAL_PAGERANDO_$(TARGET_ARCH):=
+ifdef TARGET_2ND_ARCH
+LOCAL_PAGERANDO_$(TARGET_2ND_ARCH):=
+endif
+LOCAL_ENABLE_PAGERANDO:=
+LOCAL_PAGERANDO_MODULE_SUFFIX:=
+LOCAL_PAGERANDO_INTERMEDIATES_SUFFIX:=
+LOCAL_PAGERANDO_SHARED_SUFFIX:=
+LOCAL_PAGERANDO_STATIC_SUFFIX:=
+
 # Trim MAKEFILE_LIST so that $(call my-dir) doesn't need to
 # iterate over thousands of entries every time.
 # Leave the current makefile to make sure we don't break anything
