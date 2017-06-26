@@ -24,6 +24,8 @@ endif
 
 ifndef skip_build_from_source
 
+include $(BUILD_SYSTEM)/pagerando.mk
+
 include $(BUILD_SYSTEM)/dynamic_binary.mk
 
 # Check for statically linked libc

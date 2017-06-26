@@ -11,7 +11,7 @@ LOCAL_2ND_ARCH_VAR_PREFIX :=
 include $(BUILD_SYSTEM)/module_arch_supported.mk
 
 ifeq ($(my_module_arch_supported),true)
-include $(BUILD_SYSTEM)/static_library_internal.mk
+include $(BUILD_SYSTEM)/static_library_pagerando.mk
 endif
 
 ifdef TARGET_2ND_ARCH
@@ -26,7 +26,7 @@ LOCAL_BUILT_MODULE :=
 LOCAL_INSTALLED_MODULE :=
 LOCAL_INTERMEDIATE_TARGETS :=
 
-include $(BUILD_SYSTEM)/static_library_internal.mk
+include $(BUILD_SYSTEM)/static_library_pagerando.mk
 
 endif
 

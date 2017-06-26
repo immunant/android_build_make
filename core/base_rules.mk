@@ -210,7 +210,7 @@ ifneq ($(strip $(LOCAL_BUILT_MODULE)$(LOCAL_INSTALLED_MODULE)),)
   $(error $(LOCAL_PATH): LOCAL_BUILT_MODULE and LOCAL_INSTALLED_MODULE must not be defined by component makefiles)
 endif
 
-my_register_name := $(LOCAL_MODULE)
+my_register_name := $(LOCAL_MODULE)$(LOCAL_PAGERANDO_MODULE_SUFFIX)
 ifeq ($(my_host_cross),true)
   my_register_name := host_cross_$(LOCAL_MODULE)
 endif
@@ -239,7 +239,7 @@ $(error $(LOCAL_PATH): $(module_id) already defined by $($(module_id)))
 endif
 $(module_id) := $(LOCAL_PATH)
 
-intermediates := $(call local-intermediates-dir,,$(LOCAL_2ND_ARCH_VAR_PREFIX),$(my_host_cross))
+intermediates := $(call local-intermediates-dir,,$(LOCAL_2ND_ARCH_VAR_PREFIX),$(my_host_cross),$(LOCAL_PAGERANDO_INTERMEDIATES_SUFFIX))
 intermediates.COMMON := $(call local-intermediates-dir,COMMON)
 generated_sources_dir := $(call local-generated-sources-dir)
 
