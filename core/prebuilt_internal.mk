@@ -48,7 +48,7 @@ my_pack_module_relocations := $(firstword \
 LOCAL_ENABLE_PAGERANDO:=
 LOCAL_PAGERANDO_MODULE_SUFFIX:=
 LOCAL_PAGERANDO_INTERMEDIATES_SUFFIX:=
-LOCAL_PAGERANDO_SHARED_SUFFIX:= _pagerando
+LOCAL_PAGERANDO_SHARED_SUFFIX:=
 LOCAL_PAGERANDO_STATIC_SUFFIX:=
 
 # Do not fall back global ENABLE_PAGERANDO flag for prebuilts, only check local
@@ -59,10 +59,12 @@ my_pagerando := $(firstword \
 
 ifeq ($(my_pagerando),true)
   LOCAL_ENABLE_PAGERANDO := true
-  LOCAL_PAGERANDO_INTERMEDIATES_SUFFIX := _pagerando
   LOCAL_PAGERANDO_STATIC_SUFFIX := _pagerando
 
+  # Only label this prebuilt as _pagerando if it is a static lib. Shared libs
+  # should just be referred to by their base stem.
   ifeq (STATIC_LIBRARIES,$(LOCAL_MODULE_CLASS))
+    LOCAL_PAGERANDO_INTERMEDIATES_SUFFIX := _pagerando
     LOCAL_PAGERANDO_MODULE_SUFFIX := _pagerando
   endif
 endif

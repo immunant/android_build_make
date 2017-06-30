@@ -40,7 +40,6 @@ include $(BUILD_SYSTEM)/pagerando.mk
 
 ifeq ($(my_pagerando),true)
 LOCAL_ENABLE_PAGERANDO := true
-LOCAL_PAGERANDO_INTERMEDIATES_SUFFIX := _pagerando
 LOCAL_PAGERANDO_STATIC_SUFFIX := _pagerando
 endif
 

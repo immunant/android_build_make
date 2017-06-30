@@ -1385,9 +1385,7 @@ endif
 import_includes := $(intermediates)/import_includes
 import_includes_deps := $(strip \
     $(foreach l, $(installed_shared_library_module_names), \
-      $(if $(PAGERANDO.$(l).$($(my_prefix)$(LOCAL_2ND_ARCH_VAR_PREFIX)ARCH).DISABLED), \
-        $(call intermediates-dir-for,SHARED_LIBRARIES,$(l),$(my_kind),,$(LOCAL_2ND_ARCH_VAR_PREFIX),$(my_host_cross))/export_includes, \
-        $(call intermediates-dir-for,SHARED_LIBRARIES,$(l),$(my_kind),,$(LOCAL_2ND_ARCH_VAR_PREFIX),$(my_host_cross),$(LOCAL_PAGERANDO_SHARED_SUFFIX))/export_includes)) \
+      $(call intermediates-dir-for,SHARED_LIBRARIES,$(l),$(my_kind),,$(LOCAL_2ND_ARCH_VAR_PREFIX),$(my_host_cross))/export_includes) \
     $(foreach l, $(my_static_libraries) $(my_whole_static_libraries), \
       $(if $(PAGERANDO.$(l).$($(my_prefix)$(LOCAL_2ND_ARCH_VAR_PREFIX)ARCH).DISABLED), \
         $(call intermediates-dir-for,STATIC_LIBRARIES,$(l),$(my_kind),,$(LOCAL_2ND_ARCH_VAR_PREFIX),$(my_host_cross))/export_includes, \
@@ -1800,9 +1798,7 @@ export_include_deps := $(strip \
 # Re-export requested headers from shared libraries.
 export_include_deps += $(strip \
    $(foreach l,$(LOCAL_EXPORT_SHARED_LIBRARY_HEADERS), \
-     $(if $(PAGERANDO.$(l).$($(my_prefix)$(LOCAL_2ND_ARCH_VAR_PREFIX)ARCH).DISABLED), \
-       $(call intermediates-dir-for,SHARED_LIBRARIES,$(l),$(my_kind),,$(LOCAL_2ND_ARCH_VAR_PREFIX),$(my_host_cross))/export_includes, \
-       $(call intermediates-dir-for,SHARED_LIBRARIES,$(l),$(my_kind),,$(LOCAL_2ND_ARCH_VAR_PREFIX),$(my_host_cross),$(LOCAL_PAGERANDO_SHARED_SUFFIX))/export_includes)))
+     $(call intermediates-dir-for,SHARED_LIBRARIES,$(l),$(my_kind),,$(LOCAL_2ND_ARCH_VAR_PREFIX),$(my_host_cross))/export_includes))
 # Re-export requested headers from static libraries.
 export_include_deps += $(strip \
    $(foreach l,$(LOCAL_EXPORT_STATIC_LIBRARY_HEADERS), \
