@@ -23,7 +23,4 @@ endif
 
 ifneq ($($(LOCAL_2ND_ARCH_VAR_PREFIX)TARGET_SUPPORTS_PAGERANDO),true)
   my_pagerando := false
-else
-  # Always prefer the pagerando version of shared lib deps, if not disabled.
-  LOCAL_PAGERANDO_SHARED_SUFFIX := _pagerando
 endif

@@ -1,10 +1,6 @@
 
 include $(BUILD_SYSTEM)/pagerando.mk
 
-ifeq ($(my_pagerando),true)
-LOCAL_PAGERANDO_SHARED_SUFFIX := _pagerando
-endif
-
 include $(BUILD_SYSTEM)/static_library_internal.mk
 
 ifeq ($(my_pagerando),true)
