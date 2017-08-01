@@ -444,7 +444,7 @@ include $(BUILD_SYSTEM)/config_sanitizers.mk
 ifeq ($(LOCAL_ENABLE_PAGERANDO),true)
   ifeq ($(my_clang),true)
     my_cflags += -flto -fpagerando
-    my_ldflags += -flto -Wl,--plugin-opt,pip
+    my_ldflags += -flto -Wl,--plugin-opt,pagerando
   else
     LOCAL_PAGERANDO_STATIC_SUFFIX :=
   endif
