@@ -8,7 +8,6 @@ LOCAL_PAGERANDO_STATIC_SUFFIX:=
 
 my_pagerando :=
 ifndef LOCAL_IS_HOST_MODULE
-  # Pagerando can only be enabled for 32-bit arm currently
   my_pagerando := $(strip $(LOCAL_PAGERANDO))
   ifdef LOCAL_PAGERANDO_$(my_32_64_bit_suffix)
   my_pagerando := $(strip $(LOCAL_PAGERANDO_$(my_32_64_bit_suffix)))
