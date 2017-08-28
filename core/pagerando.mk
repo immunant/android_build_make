@@ -1,6 +1,5 @@
 
 # Clear the internal variables, to make multilib builds work
-LOCAL_ENABLE_PAGERANDO:=
 LOCAL_PAGERANDO_MODULE_SUFFIX:=
 LOCAL_PAGERANDO_INTERMEDIATES_SUFFIX:=
 LOCAL_PAGERANDO_SHARED_SUFFIX:=
@@ -15,7 +14,7 @@ ifndef LOCAL_IS_HOST_MODULE
   ifdef LOCAL_PAGERANDO_$(TARGET_$(LOCAL_2ND_ARCH_VAR_PREFIX)ARCH)
   my_pagerando := $(strip $(LOCAL_PAGERANDO_$(TARGET_$(LOCAL_2ND_ARCH_VAR_PREFIX)ARCH)))
   endif
-  ifeq ($(ENABLE_PAGERANDO)|$(my_pagerando),true|)
+  ifeq ($(PAGERANDO)|$(my_pagerando),true|)
     my_pagerando := true
   endif
 endif

@@ -136,7 +136,7 @@ $(call add_json_str,  ProductPath,                       $(TARGET_COPY_OUT_PRODU
 $(call add_json_bool, MinimizeJavaDebugInfo,             $(filter true,$(PRODUCT_MINIMIZE_JAVA_DEBUG_INFO)))
 
 $(call add_json_bool, UseGoma,                           $(filter-out false,$(USE_GOMA)))
-$(call add_json_bool, EnablePagerando,                   $(filter-out false,$(ENABLE_PAGERANDO)))
+$(call add_json_bool, Pagerando,                         $(filter-out false,$(PAGERANDO)))
 
 $(call add_json_str,  DistDir,                           $(if $(dist_goal), $(DIST_DIR)))
 

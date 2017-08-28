@@ -441,7 +441,11 @@ endif
 ifneq ($(LOCAL_MODULE_MAKEFILE),$(SOONG_ANDROID_MK))
 include $(BUILD_SYSTEM)/config_sanitizers.mk
 
-ifeq ($(LOCAL_ENABLE_PAGERANDO),true)
+include $(BUILD_SYSTEM)/pagerando.mk
+ifeq ($(my_pagerando),true)
+  ifeq ($(LOCAL_MODULE_CLASS),SHARED_LIBRARIES)
+    LOCAL_PAGERANDO_STATIC_SUFFIX := _pagerando
+  endif
   ifeq ($(my_clang),true)
     my_cflags += -flto -fpagerando
     my_ldflags += -flto -Wl,--plugin-opt,pagerando
