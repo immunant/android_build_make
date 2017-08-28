@@ -629,26 +629,6 @@ $(strip \
 endef
 
 ###########################################################
-## Get the register name for a library
-###########################################################
-
-# $(1): target name, like "NotePad"
-# $(2): { HOST, HOST_CROSS, AUX, <empty (TARGET)>, <other non-empty (HOST)> }
-# $(3): if non-empty, force 2nd arch
-# $(4): if non-empty, force host cross os
-define get-register-name
-$(strip \
-    $(eval _idfName := $(strip $(1))) \
-    $(if $(_idfName),, \
-        $(error $(LOCAL_PATH): Name not defined in call to get-register-name)) \
-    $(eval _idfPrefix := $(call find-idf-prefix,$(2),$(4))) \
-    $(eval _prefix := $(if $(strip $(4)),host_cross_)) \
-    $(eval _suffix := $(if $(strip $(3)),$($(_idfPrefix)_2ND_ARCH_MODULE_SUFFIX))) \
-    $(_prefix)$(1)$(_suffix) \
-)
-endef
-
-###########################################################
 ## Convert a list of short module names (e.g., "framework", "Browser")
 ## into the list of files that are built for those modules.
 ## NOTE: this won't return reliable results until after all
