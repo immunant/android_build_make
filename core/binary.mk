@@ -449,6 +449,10 @@ ifeq ($(my_pagerando),true)
   ifeq ($(my_clang),true)
     my_cflags += -flto -fpagerando
     my_ldflags += -flto -Wl,--plugin-opt,pagerando
+
+    # Clang doe not pass correct emulated TLS option in LTO mode, so force
+    # emulated TLS
+    my_ldflags += -Wl,-plugin-opt,-emulated-tls
   else
     LOCAL_PAGERANDO_STATIC_SUFFIX :=
   endif
