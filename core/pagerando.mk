@@ -22,3 +22,15 @@ endif
 ifneq ($($(LOCAL_2ND_ARCH_VAR_PREFIX)TARGET_SUPPORTS_PAGERANDO),true)
   my_pagerando := false
 endif
+
+# Pagerando should only be enabled for static and shared libraries
+is_library := false
+ifeq (SHARED_LIBRARIES,$(LOCAL_MODULE_CLASS))
+  is_library := true
+endif
+ifeq (STATIC_LIBRARIES,$(LOCAL_MODULE_CLASS))
+  is_library := true
+endif
+ifneq ($(is_library),true)
+  my_pagerando := false
+endif
