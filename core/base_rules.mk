@@ -233,9 +233,12 @@ ifneq ($(strip $(LOCAL_BUILT_MODULE)$(LOCAL_INSTALLED_MODULE)),)
   $(error $(LOCAL_PATH): LOCAL_BUILT_MODULE and LOCAL_INSTALLED_MODULE must not be defined by component makefiles)
 endif
 
-my_register_name := $(LOCAL_MODULE)$(LOCAL_PAGERANDO_MODULE_SUFFIX)
+my_register_name := $(LOCAL_MODULE)
 ifeq ($(my_host_cross),true)
   my_register_name := host_cross_$(LOCAL_MODULE)
+endif
+ifdef LOCAL_PAGERANDO_MODULE_SUFFIX
+  my_register_name := $(my_register_name)$(LOCAL_PAGERANDO_MODULE_SUFFIX)
 endif
 ifdef LOCAL_2ND_ARCH_VAR_PREFIX
 ifndef LOCAL_NO_2ND_ARCH_MODULE_SUFFIX
