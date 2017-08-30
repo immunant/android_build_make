@@ -46,14 +46,14 @@ my_target_libgcc :=
 else
   my_target_libgcc := $(call intermediates-dir-for,STATIC_LIBRARIES,libgcc,,,$(LOCAL_2ND_ARCH_VAR_PREFIX))/libgcc.a
   ifeq ($(my_pagerando),true)
-    ifdef PAGERANDO.libgcc.$($(my_prefix)$(LOCAL_2ND_ARCH_VAR_PREFIX)ARCH).DISABLED
+    ifndef PAGERANDO.libgcc.$($(my_prefix)$(LOCAL_2ND_ARCH_VAR_PREFIX)ARCH).DISABLED
       my_target_libgcc := $(call intermediates-dir-for,STATIC_LIBRARIES,libgcc,,,$(LOCAL_2ND_ARCH_VAR_PREFIX),,$(LOCAL_PAGERANDO_STATIC_SUFFIX))/libgcc.a
     endif
   endif
 endif
 my_target_libatomic := $(call intermediates-dir-for,STATIC_LIBRARIES,libatomic,,,$(LOCAL_2ND_ARCH_VAR_PREFIX))/libatomic.a
 ifeq ($(my_pagerando),true)
-  ifdef PAGERANDO.libatomic.$($(my_prefix)$(LOCAL_2ND_ARCH_VAR_PREFIX)ARCH).DISABLED
+  ifndef PAGERANDO.libatomic.$($(my_prefix)$(LOCAL_2ND_ARCH_VAR_PREFIX)ARCH).DISABLED
     my_target_libatomic := $(call intermediates-dir-for,STATIC_LIBRARIES,libatomic,,,$(LOCAL_2ND_ARCH_VAR_PREFIX),,$(LOCAL_PAGERANDO_STATIC_SUFFIX))/libatomic.a
   endif
 endif
