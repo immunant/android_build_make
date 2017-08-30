@@ -241,7 +241,10 @@ endif
 # "my_strip_module not true" because otherwise the rules are defined in dynamic_binary.mk.
 endif  # my_strip_module not true
 
-# Mark modules that have pagerando disabled
+# Mark modules that have pagerando disabled. Prebuilt static libraries without
+# pagerando need to be marked so users will only attempt to use the
+# non-pagerando version, even if the binary using this static lib has pagerando
+# enabled.
 ifeq ($(LOCAL_MODULE_MAKEFILE),$(SOONG_ANDROID_MK))
   ifeq ($(my_pagerando),false)
     PAGERANDO.$(LOCAL_MODULE).$($(my_prefix)$(LOCAL_2ND_ARCH_VAR_PREFIX)ARCH).DISABLED := 1
