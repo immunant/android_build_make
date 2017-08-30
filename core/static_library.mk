@@ -14,8 +14,9 @@ ifeq ($(my_module_arch_supported),true)
 
 # We need to build a pagerando version of the library in case any pagerando
 # binaries need this static library
+saved_local_pagerando := $(LOCAL_PAGERANDO)
 include $(BUILD_SYSTEM)/pagerando.mk
-ifeq ($(my_pagerando),true)
+ifeq ($(LOCAL_PAGERANDO),true)
   LOCAL_PAGERANDO_MODULE_SUFFIX := _pagerando
   LOCAL_PAGERANDO_INTERMEDIATES_SUFFIX := _pagerando
   LOCAL_PAGERANDO_STATIC_SUFFIX := _pagerando
@@ -30,7 +31,10 @@ ifeq ($(my_pagerando),true)
   LOCAL_BUILT_MODULE_STEM :=
   LOCAL_INSTALLED_MODULE_STEM :=
   LOCAL_INTERMEDIATE_TARGETS :=
-  LOCAL_PAGERANDO := false
+  LOCAL_PAGERANDO_MODULE_SUFFIX :=
+  LOCAL_PAGERANDO_INTERMEDIATES_SUFFIX :=
+  LOCAL_PAGERANDO_STATIC_SUFFIX :=
+  LOCAL_PAGERANDO :=
 endif
 
 include $(BUILD_SYSTEM)/static_library_internal.mk
@@ -51,8 +55,9 @@ LOCAL_INTERMEDIATE_TARGETS :=
 
 # We need to build a pagerando version of the library in case any pagerando
 # binaries need this static library
+LOCAL_PAGERANDO := $(saved_local_pagerando)
 include $(BUILD_SYSTEM)/pagerando.mk
-ifeq ($(my_pagerando),true)
+ifeq ($(LOCAL_PAGERANDO),true)
   LOCAL_PAGERANDO_MODULE_SUFFIX := _pagerando
   LOCAL_PAGERANDO_INTERMEDIATES_SUFFIX := _pagerando
   LOCAL_PAGERANDO_STATIC_SUFFIX := _pagerando
@@ -67,7 +72,10 @@ ifeq ($(my_pagerando),true)
   LOCAL_BUILT_MODULE_STEM :=
   LOCAL_INSTALLED_MODULE_STEM :=
   LOCAL_INTERMEDIATE_TARGETS :=
-  LOCAL_PAGERANDO := false
+  LOCAL_PAGERANDO_MODULE_SUFFIX :=
+  LOCAL_PAGERANDO_INTERMEDIATES_SUFFIX :=
+  LOCAL_PAGERANDO_STATIC_SUFFIX :=
+  LOCAL_PAGERANDO :=
 endif
 
 include $(BUILD_SYSTEM)/static_library_internal.mk

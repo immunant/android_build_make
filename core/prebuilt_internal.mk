@@ -50,11 +50,11 @@ LOCAL_PAGERANDO_STATIC_SUFFIX:=
 
 # Do not fall back global PAGERANDO flag for prebuilts, only check local
 # flag. Thus we cannot use pagerando.mk
-my_pagerando := $(firstword \
+LOCAL_PAGERANDO := $(firstword \
   $(LOCAL_PAGERANDO_$($(my_prefix)$(LOCAL_2ND_ARCH_VAR_PREFIX)ARCH)) \
   $(LOCAL_PAGERANDO))
 
-ifeq ($(my_pagerando),true)
+ifeq ($(LOCAL_PAGERANDO),true)
   LOCAL_PAGERANDO_STATIC_SUFFIX := _pagerando
 
   # Only label this prebuilt as _pagerando if it is a static lib. Shared libs
@@ -246,7 +246,7 @@ endif  # my_strip_module not true
 # non-pagerando version, even if the binary using this static lib has pagerando
 # enabled.
 ifeq ($(LOCAL_MODULE_MAKEFILE),$(SOONG_ANDROID_MK))
-  ifeq ($(my_pagerando),false)
+  ifeq ($(LOCAL_PAGERANDO),false)
     PAGERANDO.$(LOCAL_MODULE).$($(my_prefix)$(LOCAL_2ND_ARCH_VAR_PREFIX)ARCH).DISABLED := 1
   endif
 endif
