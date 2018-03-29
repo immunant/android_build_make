@@ -443,8 +443,8 @@ include $(BUILD_SYSTEM)/config_sanitizers.mk
 
 ifeq ($(LOCAL_PAGERANDO),true)
   ifeq ($(my_clang),true)
-    my_cflags += -flto -fpagerando
-    my_ldflags += -flto -Wl,--plugin-opt,pagerando
+    my_cflags += -flto -fsanitize=pagerando -fsanitize-blacklist=build/soong/cc/config/pagerando_blacklist.txt
+    my_ldflags += -flto -Wl,--plugin-opt,pagerando -Wl,--plugin-opt,-pagerando-skip-trivial -Wl,--plugin-opt,-pagerando-binning-strategy=pgo
 
     # Clang doe not pass correct emulated TLS option in LTO mode, so force
     # emulated TLS
