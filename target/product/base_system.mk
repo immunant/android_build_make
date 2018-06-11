@@ -272,7 +272,8 @@ PRODUCT_COPY_FILES += \
     system/core/rootdir/init.usb.rc:root/init.usb.rc \
     system/core/rootdir/init.usb.configfs.rc:root/init.usb.configfs.rc \
     system/core/rootdir/ueventd.rc:root/ueventd.rc \
-    system/core/rootdir/etc/hosts:system/etc/hosts
+    system/core/rootdir/etc/hosts:system/etc/hosts \
+    system/core/rootdir/etc/ld.pot_map.txt:system/etc/ld.pot_map.txt
 
 PRODUCT_COPY_FILES += system/core/rootdir/init.zygote32.rc:root/init.zygote32.rc
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.zygote=zygote32
